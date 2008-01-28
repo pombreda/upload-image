@@ -1,0 +1,12 @@
+== upload-image ==
+
+This is a simple utility for uploading image files on various free
+image hostings like imageshack.us. 
+
+== Features ==
+
+
+== Structure ==
+
+Program has modular structure so it's easy to implement support of
+new image hosting service.

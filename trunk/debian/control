@@ -1,0 +1,17 @@
+Source: upload-image
+Section: graphics
+Priority: extra
+Maintainer: Sergei Stolyarov <sergei@regolit.com>
+Build-Depends: debhelper (>= 5.0.37.2)
+Build-Depends-Indep: python-dev, python-central (>= 0.5), python-pycurl
+Standards-Version: 3.7.2
+XS-Python-Version: current
+
+Package: upload-image
+Architecture: all
+Depends: ${python:Depends}, python-pycurl
+XB-Python-Version: ${python:Versions}
+Description: Command line image uploader
+ upload-image is a command line utility that can upload image files
+ to various image sharing services like imageshack.us. Program can be
+ easily extended to support additional image hosting services.
