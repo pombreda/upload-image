@@ -53,7 +53,7 @@ class ImageShackService(upimg.servicecore.Uploader):
         '''
         mo = ih_imagelink_re.search(data)
         self.msg("done")
-        if None != mo:
+        if None != mo and self.options.show_full:
             direct_url = mo.group(1)
 
             mo = ih_adlink_re.search(data)
@@ -87,8 +87,9 @@ class ImageShackService(upimg.servicecore.Uploader):
 
 def get_service_options():
     options = []
-    options.append(make_option("-p", "--password", 
-        action="store", type="string", dest="password")
+    options.append(make_option("-f", "--full", 
+        action="store_true", dest="show_full",
+        help="Show BB and HTML links in the output along with a direct url")
         )
     return options
 

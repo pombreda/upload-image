@@ -6,6 +6,7 @@ Build-Depends: debhelper (>= 5.0.37.2)
 Build-Depends-Indep: python-dev, python-central (>= 0.5), python-pycurl
 Standards-Version: 3.7.2
 XS-Python-Version: current
+Homepage: http://upload-image.googlecode.com
 
 Package: upload-image
 Architecture: all
