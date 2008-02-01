@@ -53,7 +53,7 @@ class ImageShackService(upimg.servicecore.Uploader):
         '''
         mo = ih_imagelink_re.search(data)
         self.msg("done")
-        if None != mo and self.options.show_full:
+        if None != mo:
             direct_url = mo.group(1)
 
             mo = ih_adlink_re.search(data)
@@ -63,18 +63,19 @@ class ImageShackService(upimg.servicecore.Uploader):
                 img_page_url = direct_url
 
             self.msg(_("Direct URL: %s") % direct_url)
-            mo = ih_thumblink_re.search(data)
-            if None != mo:
-                thumb_url = mo.group(1)
-                imgd = {
-                    'img_page_url': img_page_url,
-                    'thumb_url': thumb_url
-                    }
+            if self.options.show_full:
+                mo = ih_thumblink_re.search(data)
+                if None != mo:
+                    thumb_url = mo.group(1)
+                    imgd = {
+                        'img_page_url': img_page_url,
+                        'thumb_url': thumb_url
+                        }
 
-                self.msg(_("Thumbnail URL: %s") % thumb_url)
-                self.msg(_('HTML link: <a href="%(img_page_url)s"><img src="%(thumb_url)s"></a>') % imgd)
-                self.msg(_('Forum link 1: [URL=%(img_page_url)s][IMG]%(thumb_url)s[/IMG][/URL]') % imgd)
-                self.msg(_('Forum link 2: [url=%(img_page_url)s][img=%(thumb_url)s][/url]') % imgd)
+                    self.msg(_("Thumbnail URL: %s") % thumb_url)
+                    self.msg(_('HTML link: <a href="%(img_page_url)s"><img src="%(thumb_url)s"></a>') % imgd)
+                    self.msg(_('Forum link 1: [URL=%(img_page_url)s][IMG]%(thumb_url)s[/IMG][/URL]') % imgd)
+                    self.msg(_('Forum link 2: [url=%(img_page_url)s][img=%(thumb_url)s][/url]') % imgd)
         else:
             self.msg("Server response doesn't contain image URL.")
         #print data
