@@ -18,6 +18,7 @@ deb-dir: deb-clean
 	@mkdir $(DEB_BUILD_ROOT)
 	@cp -r $(SOURCE_ROOT) $(DEB_BUILD_ROOT)/$(APP_NAME)-$(VERSION)
 	@cd $(DEB_BUILD_ROOT) && find . -name .svn -type d | xargs rm -rf 
+	@cd $(DEB_BUILD_ROOT) && find . -name '*.pyc' -type d | xargs rm -rf
 	@cd $(DEB_BUILD_ROOT) && tar czf $(APP_NAME)_$(VERSION).orig.tar.gz $(APP_NAME)-$(VERSION)
 	@cp -r $(DEB_SPEC) $(DEB_BUILD_ROOT)/$(APP_NAME)-$(VERSION)
 

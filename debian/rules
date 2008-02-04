@@ -5,21 +5,28 @@
 # uncomment if dpatch functions required
 #include /usr/share/dpatch/dpatch.make
 
+export DH_PYCENTRAL=nomove
+PYVERS=$(shell pyversions -r debian/control)
+
 build: build-stamp
 
 #build-stamp: patch-stamp
 build-stamp:
 	dh_testdir
-	/usr/bin/python setup.py build
-	touch $@
+	for python in $(PYVERS); \
+		do $$python setup.py build; \
+	done
+	touch build-stamp
 
 #clean: unpatch
 clean: 
 	dh_testdir
-	dh_testroot
-	rm -f build-stamp
-	/usr/bin/python setup.py clean
-	rm -rf build 
+	for python in $(PYVERS); \
+		do $$python setup.py clean; \
+	done
+	rm -rf build-stamp build
+	rm -rf FormEncode.egg-info
+	dh_clean
 	rm `find . -name '*.pyc'`
 	dh_clean 
 
@@ -28,7 +35,12 @@ install: build
 	dh_testroot
 	dh_clean -k 
 	dh_installdirs
-	/usr/bin/python setup.py install --no-compile --root $(CURDIR)/debian/upload-image
+	for python in $(PYVERS); \
+		do $$python setup.py install --root=$(CURDIR)/debian/upload-image --no-compile; \
+	done
+
+	#dh_install -i  usr/lib/$$python/site-packages/upload-image ; \
+	#/usr/bin/python2.5 setup.py install --no-compile --root $(CURDIR)/debian/upload-image
 
 binary-indep: build install
 	dh_testdir
