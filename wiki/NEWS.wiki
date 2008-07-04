@@ -1,0 +1,5 @@
+==News==
+
+===Jul 4 2008===
+
+* Added support of service http://www.picoodle.com/
