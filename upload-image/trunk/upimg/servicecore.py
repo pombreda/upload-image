@@ -17,7 +17,13 @@ from featurechecker import check_feature
 _ = gettext.gettext
 
 # exception to simulate abstract methods
-class NotImplemented:
+class NotImplemented(Exception):
+    pass
+
+class ConnectFailed(Exception):
+    pass
+
+class RequestFailed(Exception):
     pass
 
 class Uploader:
