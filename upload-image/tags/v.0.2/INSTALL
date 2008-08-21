@@ -1,0 +1,10 @@
+==Install upload-image==
+
+The program uses python distutils
+
+==Runtime Requirements==
+
+To run upload-image you need the following python modules:
+
+* pycurl [[http://pycurl.sourceforge.net/]]
+

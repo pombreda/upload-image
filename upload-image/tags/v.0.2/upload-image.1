@@ -1,0 +1,47 @@
+.TH UPLOAD-IMAGE "1" "4 July 2008" "upload-image 0.2" "User manual"
+.SH NAME
+upload-image \- manual page for upload-image 0.2
+.SH SYNOPSIS
+.B upload-image
+.RB [options]
+.I images
+.br
+.SH DESCRIPTION
+.I upload-image 
+is an image upload utility which allows you upload 
+image files to various image web hosting sites like imageshack.us
+.LP
+Program based on plugins architecture so you can write your own
+plugins to support other services.
+.LP
+Each plugin may have its own command line options, you can see them
+using command like this:
+.IP
+\fCupload-image \-H imageshack.us\fP
+.LP
+You can get list of supported services issuing command:
+.IP
+\fCupload-image \-\-list-services\fP
+.LP
+or
+.IP
+\fCupload-image \-l\fR
+
+.SH OPTIONS
+.TP
+\fB\-\-version\fR
+show program version and exit
+.TP
+\fB\-h\fR, \fB\-\-help\fR
+show short help message and exit
+.TP
+\fB\-l\fR, \fB\-\-list-services\fR
+show list of all supported services
+
+.SH EXAMPLES
+.TP
+sss
+
+.SH FILES
+.TP
+some

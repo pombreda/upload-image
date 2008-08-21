@@ -1,0 +1,8 @@
+README
+setup.py
+upload-image.py
+upimg/__init__.py
+upimg/featurechecker.py
+upimg/servicecore.py
+upimg/services/__init__.py
+upimg/services/imageshack.py
