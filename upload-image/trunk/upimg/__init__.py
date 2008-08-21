@@ -2,6 +2,7 @@
 
 __author__ = "Sergei Stolyarov"
 __email__ = "sergei@regolit.com"
+__version__ = "0.2"
 
 import os
 import servicecore

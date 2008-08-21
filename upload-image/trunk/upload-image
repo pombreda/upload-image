@@ -9,7 +9,6 @@ from upimg.upimgOptionParser import upimgOptionGroup
 
 
 CONFIG_FILE = "~/.upload-image"
-__VERSION__ = "0.2"
 __EXECUTABLE__ = os.path.basename(sys.argv[0])
 
 def main():
@@ -26,9 +25,9 @@ def main():
             default_options[s][k] = v
 
     global_default_options = default_options['global']
-    program_version = "Images Uploader Utility version %s" % __VERSION__
+    program_version = "Images Uploader Utility version %s" % upimg.__version__
     usage = "Usage: %(prog)s [options] images" % {'prog': __EXECUTABLE__}
-    parser = upimgOptionParser(usage=usage, version=__VERSION__, conflict_handler="resolve")
+    parser = upimgOptionParser(usage=usage, version=upimg.__version__, conflict_handler="resolve")
     '''
     parser.add_option(
         "-H", "--help-service",
