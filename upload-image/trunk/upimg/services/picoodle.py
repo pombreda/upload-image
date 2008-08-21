@@ -33,10 +33,9 @@ class PicoodleService(upimg.servicecore.Uploader):
             raise upimg.servicecore.ConnectFailed("Server returned HTML that doesn't contain correct upload server name.")
 
     def _upload_file(self, filename):
-        self.msg("")
-        self.msg("Uploading image file `%s' ... " % filename, True)
         #self._curl.setopt(pycurl.HTTPHEADER, ['Expect:'])
         #self._curl.setopt(pycurl.HEADERFUNCTION, self.header_callback)
+        upimg.servicecore.Uploader._upload_file(self, filename)
         params = [
             ('pic', (pycurl.FORM_FILE, filename)),
             ('op', 'upload')
@@ -59,12 +58,12 @@ class PicoodleService(upimg.servicecore.Uploader):
 
 def get_service_options():
     options = []
-    """
-    options.append(make_option("-f", "--full", 
+    '''
+    options.append(make_option("-g", "--goo", 
         action="store_true", dest="show_full",
-        help="Show BB and HTML links in the output along with a direct url")
+        help="Display also HTML code for thumbnail")
         )
-    """
+    '''
     return options
 
 upimg.register_service(

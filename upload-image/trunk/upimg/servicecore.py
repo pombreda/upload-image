@@ -4,7 +4,8 @@ Base interface for all service classes.
 Contains methods for communications with server using HTTP protocol.
 '''
 
-__version__ = "0.1"
+__author__ = "Sergei Stolyarov"
+__email__ = "sergei@regolit.com"
 
 import sys
 import os
@@ -13,6 +14,11 @@ import StringIO
 import upimg
 import gettext
 from featurechecker import check_feature
+from upimg.progressbar import FileTransferSpeed
+from upimg.progressbar import ProgressBar
+from upimg.progressbar import Percentage
+from upimg.progressbar import Bar
+from upimg.progressbar import ETA
 
 _ = gettext.gettext
 
@@ -43,6 +49,19 @@ class Uploader:
         # Set User-Agent string
         self._curl.setopt(pycurl.USERAGENT, "PyImageUploader/%s (en)" % upimg.__version__)
 
+        # progressbar 
+        self._widgets = [FileTransferSpeed(), ' [', Bar(), '] ', Percentage(),' ', ETA()]
+
+    def _curl_upload_progress_callback(self, download_t, download_d, upload_t, upload_d):
+        #print "Total to download", download_t
+        #print "Total downloaded", download_d
+        #print "Total to upload", upload_t
+        #print "Total uploaded", upload_d
+        # draw progressbar
+        #complete_part = int(round(100 * upload_d / upload_t))
+        self._progressbar.maxval = upload_t
+        self._progressbar.update(upload_d)
+
     def do_request(self):
         # Cleanup buffer at start
         self._buffer.truncate(0)
@@ -69,10 +88,17 @@ class Uploader:
 
     def post(self, url, params = None):
         self._curl.setopt(pycurl.URL, url)
+        self._curl.setopt(pycurl.NOPROGRESS, 0)
+        self._curl.setopt(pycurl.PROGRESSFUNCTION, self._curl_upload_progress_callback)
         if params is None:
             params = []
         self._curl.setopt(pycurl.HTTPPOST, params)
+        # start progress bar
+        self._progressbar = ProgressBar(widgets=self._widgets)
+        self._progressbar.start()
         self.do_request()
+        self._progressbar.finish()
+        self._progressbar = None
     
     # perform actual connect
     def _connect(self):
@@ -92,7 +118,8 @@ class Uploader:
 
     # perform actual upload
     def _upload_file(self, filename):
-        raise NotImplemented()
+        self.msg("")
+        self.msg("Uploading file `%s'" % filename)
 
     def upload(self, images):
         # queue, will contain those files only that have passed checks

@@ -24,8 +24,7 @@ class ImageShackService(upimg.servicecore.Uploader):
         pass
 
     def _upload_file(self, filename):
-        self.msg("")
-        self.msg("Uploading image file `%s' ... " % filename, True)
+        upimg.servicecore.Uploader._upload_file(self, filename)
         self._curl.setopt(pycurl.HTTPHEADER, ['Expect:'])
         params = [
             ('fileupload', (pycurl.FORM_FILE, filename)),
@@ -52,7 +51,6 @@ class ImageShackService(upimg.servicecore.Uploader):
     </links>"""
         '''
         mo = ih_imagelink_re.search(data)
-        self.msg("done")
         if None != mo:
             direct_url = mo.group(1)
 

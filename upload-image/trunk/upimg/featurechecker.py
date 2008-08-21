@@ -1,5 +1,7 @@
+# vim: expandtab sw=4 ts=4 :
 
-__version__ = "0.1"
+__author__ = "Sergei Stolyarov"
+__email__ = "sergei@regolit.com"
 
 import sys
 import os
