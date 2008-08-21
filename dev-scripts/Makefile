@@ -8,9 +8,9 @@ DEB_BUILD_ROOT=./deb-build
 DEB_SPEC=../debian
 
 default:
-	#default empty action
+#default empty action
 	@echo available targets:
-	@echo `make deb', `make deb-clean'
+	@echo 'make deb', 'make deb-clean'
 
 deb: deb-dir
 	cd $(DEB_BUILD_ROOT)/$(APP_NAME)-$(VERSION) && dpkg-buildpackage -rfakeroot
