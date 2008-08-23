@@ -60,7 +60,7 @@ def get_service_options():
     options = []
     '''
     options.append(make_option("-g", "--goo", 
-        action="store_true", dest="show_full",
+        action="store_true", dest="full",
         help="Display also HTML code for thumbnail")
         )
     '''

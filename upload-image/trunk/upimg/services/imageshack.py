@@ -61,7 +61,7 @@ class ImageShackService(upimg.servicecore.Uploader):
                 img_page_url = direct_url
 
             self.msg(_("Direct URL: %s") % direct_url)
-            if self.options.show_full:
+            if self.options.full:
                 mo = ih_thumblink_re.search(data)
                 if None != mo:
                     thumb_url = mo.group(1)
@@ -87,7 +87,7 @@ class ImageShackService(upimg.servicecore.Uploader):
 def get_service_options():
     options = []
     options.append(make_option("-f", "--full", 
-        action="store_true", dest="show_full",
+        action="store_true", dest="full",
         help="Show BB and HTML links in the output along with a direct url")
         )
     return options
