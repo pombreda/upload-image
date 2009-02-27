@@ -8,6 +8,8 @@ Idea and some code of program was inspired by Photo Uploader software
 
 == Features ==
 
+  * upload image to the remote server
+  * display direct link to the uploaded image file
 
 == Structure ==
 
