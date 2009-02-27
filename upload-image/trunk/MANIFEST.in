@@ -1,0 +1,4 @@
+include README AUTHORS INSTALL NEWS COPYING
+include upload-image upload-image.1
+include *.py
+recursive-include upimg *.py
