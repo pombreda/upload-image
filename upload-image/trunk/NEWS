@@ -2,6 +2,7 @@
 
 === v. 0.3 ==
  * man page updated
+ * removed service picoodle.com because it's not anonymous now
  * some minor and stability changes
 
 === v. 0.2 ===
