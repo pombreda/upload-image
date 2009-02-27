@@ -1,5 +1,9 @@
 == Release history ==
 
+=== v. 0.3 ==
+ * man page updated
+ * some minor and stability changes
+
 === v. 0.2 ===
  * added progressbar text widget, thanks to Nilton Volpato [2]
  * help option was rewritten, now --help shows information about all availabe plugins including command line options
