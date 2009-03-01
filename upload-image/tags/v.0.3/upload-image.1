@@ -1,0 +1,83 @@
+.TH Upload-image "1" "4 July 2008" "upload-image 0.3" "User manual"
+.SH NAME
+upload-image \- manual page for upload-image v. 0.3
+.SH SYNOPSIS
+.B upload-image
+.RB [options]
+.I images
+.br
+.SH DESCRIPTION
+.I upload-image 
+is an image upload utility which allows you upload 
+image files to various image web hosting sites like imageshack.us
+.LP
+Program based on plugins architecture so you can write your own
+plugins to support other services.
+.LP
+Each plugin may have its own command line options, you can see them
+in the --help option output.
+.LP
+You can get list of supported services issuing command:
+.IP
+\fCupload-image \-\-list-services\fP
+.LP
+or
+.IP
+\fCupload-image \-l\fR
+
+.SH OPTIONS
+.TP
+\fB\-\-version\fR
+show program version and exit
+.TP
+\fB\-h\fR, \fB\-\-help\fR
+show short help message and exit
+.TP
+\fB\-l\fR, \fB\-\-list-services\fR
+show list of all supported services and exit
+.TP
+\fB\-s\fR, \fB\-\-service\fR=\fISERVICE_NAME\fR
+use \fISERVICE_NAME\fR for uploading files, use \fB\-\-list\fR option to display
+all supported services
+
+.SH EXAMPLES
+.PP
+.B Upload file balloons.jpg to imageshack.us:
+.nf
+upload-image -s imageshack.us balloons.jpg
+.fi
+.
+.PP 
+.B Upload file balloons.jpg to imageshack.us and generate BB-code and
+.B HTML-code for posting just uploaded images on forums and blogs:
+.nf
+upload-image -f -s imageshack.us balloons.jpg
+.fi
+
+
+.SH FILES
+.LP
+upload-image allows you to save all options and their values in the 
+configuration file $HOME/.upload-image, when you call upload-image 
+it takes default values for options from these file. For example,
+if you want to set default upload service to 'imageshack.us' then 
+you may edit configuration as this:
+
+.nf
+[global]
+service = imageshack.us
+
+.LP
+If you want also upload-image to print HTML- and BB-code add section 
+[imageshack.us] with parameter 'full':
+
+.nf
+[global]
+service = imageshack.us
+
+[imageshack.us]
+full = 1
+.fi
+
+.fi
+.SH

@@ -1,0 +1,18 @@
+== Release history ==
+
+=== v. 0.3 ==
+ * man page updated
+ * removed service picoodle.com because it's not anonymous now
+ * some minor and stability changes
+
+=== v. 0.2 ===
+ * added progressbar text widget, thanks to Nilton Volpato [2]
+ * help option was rewritten, now --help shows information about all availabe plugins including command line options
+
+=== v. 0.1 ===
+
+=== birthday ===
+The program was written Jan 25 2008 as clone of photo-uploader ([1])  written by Michal Čihař
+
+[1] http://cihar.com/software/photo-uploader/
+[2] http://pypi.python.org/pypi/progressbar

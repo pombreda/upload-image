@@ -1,0 +1,124 @@
+#!/usr/bin/env python2.5
+
+import sys
+import os
+import upimg
+import ConfigParser
+from upimg.upimgOptionParser import upimgOptionParser
+from upimg.upimgOptionParser import upimgOptionGroup
+
+
+CONFIG_FILE = "~/.upload-image"
+__EXECUTABLE__ = os.path.basename(sys.argv[0])
+
+def main():
+    # load config file
+    config = ConfigParser.ConfigParser()
+    config.read(os.path.expanduser(CONFIG_FILE))
+    default_options = { 'global': {
+        'service': ''
+        } }
+
+    for s in config.sections():
+        default_options[s] = {}
+        for (k, v) in config.items(s):
+            default_options[s][k] = v
+
+    global_default_options = default_options['global']
+    program_version = "Images Uploader Utility version %s" % upimg.__version__
+    usage = "Usage: %(prog)s [options] images" % {'prog': __EXECUTABLE__}
+    parser = upimgOptionParser(usage=usage, version=upimg.__version__, conflict_handler="resolve")
+    '''
+    parser.add_option(
+        "-H", "--help-service",
+        action="store", type="string", dest="service_help",
+        default="",
+        help="display additional help for specified service"
+        )
+    '''
+    parser.add_option(
+        "-h", "--help",
+        action="store_true", dest="upimg_help",
+        help="show this help message and exit"
+        )
+    parser.add_option(
+        "-s", "--service", 
+        action="store", type="string", dest="service_name",
+        default=global_default_options["service"],
+        help="name of service to use"
+        )
+    parser.add_option(
+        "-l", "--list-services",
+        action="store_true", dest="list_services",
+        help="List all available services."
+        )
+
+    # add option group for each supported service
+    services = upimg.list_services()
+
+    # disable error reporting for unknown arguments
+    parser.ignore_unknown_args(True)
+    (options, args) = parser.parse_args()
+    
+    # list available services
+    if options.list_services:
+        print "Available services are:"
+        for s in services:
+            print 
+            print "Name: %s" % s
+            print "Description: %s" % upimg.get_service_desc(s)
+            pass
+        sys.exit(0)
+
+    if options.upimg_help:
+        # print general help
+        parser.print_help()
+
+        # print help for all service
+        print ""
+        print "Additional options for services:"
+        for service_name in services:
+            service_options = upimg.get_service_options(service_name)
+            if not len(service_options):
+                continue
+
+            print ""
+            print "%s:" % service_name
+            tmp_parser = parser = upimgOptionParser(usage="")
+            tmp_parser.add_options(service_options)
+            tmp_parser.print_help()
+        sys.exit(0)
+
+    if options.service_name and not options.upimg_help:
+
+        service_name = options.service_name
+        if not service_name in services:
+            sys.exit("Unknown upload service: `%s'" % options.service_name)
+
+
+        service_default_options = {}
+        if service_name in default_options:
+            service_default_options = default_options[service_name]
+
+        service_options = upimg.get_service_options(service_name)
+        group = parser.add_option_group(service_name)
+        for op in service_options:
+            if op.dest in service_default_options:
+                op.default = service_default_options[op.dest]
+            group.add_option(op)
+        
+        # enable error reporting for unknown arguments
+        parser.ignore_unknown_args(False)
+        (options, args) = parser.parse_args()
+        upimg.upload_files(options, args)
+        sys.exit(0)
+
+
+    # default action when no other options processed
+    print usage
+    print ""
+    print "Try `%(prog)s --help' for more options." % {'prog': __EXECUTABLE__}
+    sys.exit(1)
+
+if __name__ == '__main__':
+    main()

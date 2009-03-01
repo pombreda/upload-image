@@ -1,0 +1,22 @@
+==Install upload-image==
+
+The program uses python distutils, so typical installation procedure is:
+
+    $ wget http://upload-image.googlecode.com/files/upload-image-0.3.tar.gz
+    $ tar xzf upload-image-0.3.tar.gz
+    $ cd upload-image-0.3
+    $ sudo python2.5 setup.py install 
+
+If you are using Debian/Ubuntu please install corresponding deb package:
+    
+    $ wget http://upload-image.googlecode.com/files/upload-image_0.3-1_all.deb
+    $ sudo dpkg -i upload-image_0.3-1_all.deb
+
+==Runtime Requirements==
+
+To run upload-image you need the following python modules:
+
+* pycurl [[http://pycurl.sourceforge.net/]]
+
+
+
