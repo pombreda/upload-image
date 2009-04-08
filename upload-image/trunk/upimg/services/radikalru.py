@@ -103,7 +103,7 @@ class RadikalRuService(upimg.servicecore.Uploader):
 
     def _features(self):
         f = {
-            'filesize_limit': 1500000, # 1.5 mb
+            'filesize_limit': 10000000, # 1.5 mb
             }
         return f
 
