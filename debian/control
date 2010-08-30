@@ -3,7 +3,7 @@ Section: graphics
 Priority: extra
 Maintainer: Sergei Stolyarov <sergei@regolit.com>
 Build-Depends: debhelper (>= 5.0.37.2)
-Build-Depends-Indep: python2.5-dev, python-central (>= 0.5), python-pycurl
+Build-Depends-Indep: python2.5-dev|python2.6-dev, python-central (>= 0.5), python-pycurl
 Standards-Version: 3.7.2
 XS-Python-Version: 2.5
 Homepage: http://upload-image.googlecode.com

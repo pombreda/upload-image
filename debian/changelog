@@ -1,3 +1,9 @@
+upload-image (0.4-2) experimental; urgency=low
+
+  * fixed imageshack.us upload, updated progressbar library
+
+ -- Sergei Stolyarov <sergei@regolit.com>  Mon, 30 Aug 2010 23:04:58 +0700
+
 upload-image (0.4-1) experimental; urgency=low
 
   * upstream release
