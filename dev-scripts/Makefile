@@ -2,7 +2,7 @@
 #
 
 APP_NAME=upload-image
-VERSION=0.3
+VERSION=0.4
 SOURCE_ROOT=../upload-image/trunk/
 DEB_BUILD_ROOT=./deb-build
 DEB_SPEC=../debian
