@@ -1,9 +1,10 @@
-#!/usr/bin/env python2.5
+#!/usr/bin/env python2.6
 
 import sys
 import os
 import upimg
 import ConfigParser
+import logging
 from upimg.upimgOptionParser import upimgOptionParser
 from upimg.upimgOptionParser import upimgOptionGroup
 
@@ -52,6 +53,10 @@ def main():
         action="store_true", dest="list_services",
         help="List all available services."
         )
+    parser.add_option(
+        "-d", "--debug",
+        action="store_true", dest="debug_mode",
+        help="Enable debug output")
 
     # add option group for each supported service
     services = upimg.list_services()
@@ -89,6 +94,9 @@ def main():
             tmp_parser.print_help()
         sys.exit(0)
 
+    if options.debug_mode:
+        logging.getLogger().setLevel(logging.DEBUG)
+        
     if options.service_name and not options.upimg_help:
 
         service_name = options.service_name

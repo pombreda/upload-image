@@ -13,6 +13,7 @@ import pycurl
 import StringIO
 import upimg
 import gettext
+import logging
 from featurechecker import check_feature
 from upimg.progressbar import FileTransferSpeed
 from upimg.progressbar import ProgressBar
@@ -59,6 +60,10 @@ class Uploader:
         #print "Total uploaded", upload_d
         # draw progressbar
         #complete_part = int(round(100 * upload_d / upload_t))
+        logging.debug("uploaded: %s, to upload: %s" % (upload_d, upload_t))
+        if upload_t == 0:
+            return
+        
         self._progressbar.maxval = upload_t
         self._progressbar.update(upload_d)
 

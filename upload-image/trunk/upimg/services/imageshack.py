@@ -21,7 +21,6 @@ class ImageShackService(upimg.servicecore.Uploader):
     def _connect(self):
         self.msg(_("Connecting to imageshack.us..."))
         self.head("http://imageshack.us")
-        pass
 
     def _upload_file(self, filename):
         upimg.servicecore.Uploader._upload_file(self, filename)
@@ -76,6 +75,7 @@ class ImageShackService(upimg.servicecore.Uploader):
                     self.msg(_('Forum link 2: [url=%(img_page_url)s][img=%(thumb_url)s][/url]') % imgd)
         else:
             self.msg("Server response doesn't contain image URL.")
+            self.msg("Response: %s" % data)
         #print data
 
     def _features(self):
