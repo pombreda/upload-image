@@ -1,0 +1,14 @@
+﻿==News==
+
+### Aug 22 2008 ###
+
+Near 0.2 version!
+
+  * some code improvements
+  * added files uploading text progress bar using library [progressbar](http://pypi.python.org/pypi/progressbar)
+  * help command line option has been rewritten and now displays all services' command line options
+
+### Jul 4 2008 ###
+
+  * Added support of service http://www.picoodle.com/
+  * Added skeleton of MAN page
